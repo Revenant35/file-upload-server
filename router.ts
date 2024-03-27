@@ -23,25 +23,29 @@ const encryption = new AesEncryption(keyStore);
 
 if (
   process.env.AWS_S3_ACCESS_KEY_ID === undefined ||
-  process.env.AWS_S3_SECRET_ACCESS_KEY === undefined
+  process.env.AWS_S3_SECRET_ACCESS_KEY === undefined ||
+  process.env.AWS_S3_MAIN_BUCKET_NAME === undefined ||
+  process.env.AWS_S3_MAIN_BUCKET_REGION === undefined ||
+  process.env.AWS_S3_PREVIEW_BUCKET_NAME === undefined ||
+  process.env.AWS_S3_PREVIEW_BUCKET_REGION === undefined
 ) {
   throw new Error(
-    "AWS_S3_ACCESS_KEY_ID or AWS_S3_SECRET_ACCESS_KEY environment variable not set",
+    "Invalid AWS configuration. Please see .env_example for configuration details.",
   );
 }
 
 const main_aws_config: AWSConfig = {
   access_key_id: process.env.AWS_S3_ACCESS_KEY_ID,
   secret_access_key: process.env.AWS_S3_SECRET_ACCESS_KEY,
-  bucket_name: "main-file-uploads",
-  region: "us-east-1",
+  bucket_name: process.env.AWS_S3_MAIN_BUCKET_NAME,
+  region: process.env.AWS_S3_MAIN_BUCKET_REGION,
 };
 
 const preview_aws_config: AWSConfig = {
   access_key_id: process.env.AWS_S3_ACCESS_KEY_ID,
   secret_access_key: process.env.AWS_S3_SECRET_ACCESS_KEY,
-  bucket_name: "preview-file-uploads",
-  region: "us-east-1",
+  bucket_name: process.env.AWS_S3_PREVIEW_BUCKET_NAME,
+  region: process.env.AWS_S3_PREVIEW_BUCKET_REGION,
 };
 
 const main_storage = new AwsStorage(encryption, main_aws_config);
