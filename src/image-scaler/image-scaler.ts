@@ -4,9 +4,10 @@ export interface ImageScaler {
    *
    * @param file The input image as a buffer
    * @param max_width The max width in pixels
+   * @param max_height The max height in pixels
    * @returns the output image as a buffer, scaled
    */
-  scale(file: Buffer, max_width: number): Promise<Buffer>;
+  scale(file: Buffer, max_width: number, max_height: number): Promise<Buffer>;
 
   /**
    * Returns whether the image scaler supports scaling the given mime type

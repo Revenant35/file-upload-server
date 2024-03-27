@@ -19,6 +19,7 @@ export class UploadRequest {
   private readonly preview_storage: Storage | undefined;
 
   private readonly IMAGE_MAX_WIDTH_PX = 2500;
+  private readonly IMAGE_MAX_HEIGHT_PX = 2500;
 
   constructor(
     preview: PreviewGeneratorFactory,
@@ -47,7 +48,7 @@ export class UploadRequest {
     }
 
     if (this.scaler.supported(mime_type)) {
-      file = await this.scaler.scale(file, this.IMAGE_MAX_WIDTH_PX);
+      file = await this.scaler.scale(file, this.IMAGE_MAX_WIDTH_PX, this.IMAGE_MAX_HEIGHT_PX);
     }
 
     const upload_id = uuidv4();
