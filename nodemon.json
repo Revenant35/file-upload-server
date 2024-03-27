@@ -1,6 +1,7 @@
 {
   "watch": [
     "app.ts",
+    "router.ts",
     "src"
   ],
   "ext": "ts",
