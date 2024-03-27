@@ -16,7 +16,9 @@ describe("SharpImageScaler", () => {
       })
         .png()
         .toBuffer();
-      const scaledImage = await imageScaler.scale(inputBuffer, 200);
+      const scaledImage = await imageScaler.scale(
+        inputBuffer, 200, 200
+      );
       expect(scaledImage).toBeInstanceOf(Buffer);
     });
 
@@ -35,9 +37,11 @@ describe("SharpImageScaler", () => {
         .toBuffer();
 
       const widthToScale = 100;
+      const heightToScale = 100;
       const scaledImageBuffer = await imageScaler.scale(
         inputBuffer,
         widthToScale,
+        heightToScale,
       );
       const metadata = await sharp(scaledImageBuffer).metadata();
 
