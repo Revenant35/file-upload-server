@@ -56,6 +56,7 @@ const image_scaler = new SharpImageScaler();
 const preview_factory = new PreviewGeneratorFactory();
 const image_generator = new ImagePreviewGenerator(image_scaler);
 preview_factory.register("image/jpg", image_generator);
+preview_factory.register("image/jpeg", image_generator);
 preview_factory.register("image/png", image_generator);
 preview_factory.register("image/gif", image_generator);
 preview_factory.register("image/bmp", image_generator);
