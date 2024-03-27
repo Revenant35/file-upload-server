@@ -9,7 +9,6 @@ export const validateAccessToken = auth({
   audience: process.env.AUTH0_AUDIENCE,
 });
 
-
 export function getUserId(req: Request) {
   return req.auth?.payload.sub;
 }

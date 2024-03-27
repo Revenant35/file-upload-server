@@ -6,7 +6,7 @@ import {AWSConfig, AwsStorage} from "./src/storage/aws_storage";
 import {SharpImageScaler} from "./src/image-scaler/sharp-image-scaler";
 import {PreviewGeneratorFactory} from "./src/image-previews/preview-factory";
 import {ImagePreviewGenerator} from "./src/image-previews/image-preview-generator";
-import {getUserId, validateAccessToken} from "./src/auth/auth0";
+import {getUserId, validateAccessToken} from "./src/middleware/auth0";
 import express, {Request, Response} from "express";
 import {UploadRequest} from "./src/upload_request";
 
@@ -83,7 +83,7 @@ router.get(
       res.send(file_data.buffer);
     } catch (error: any) {
       if (error.code === "NoSuchKey") {
-        return res.status(404).send("File not found");
+        return res.status(404).json({ message: "File not Found" });
       }
       console.error(error);
       res.status(500).send("Internal server error");
@@ -112,7 +112,7 @@ router.get(
       res.send(file_data.buffer);
     } catch (error: any) {
       if (error.code === "NoSuchKey") {
-        return res.status(404).send("File not found");
+        return res.status(404).json({ message: "File not Found" });
       }
       console.error(error);
       res.status(500).send("Internal server error");
