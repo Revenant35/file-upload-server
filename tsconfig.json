@@ -11,6 +11,8 @@
     "resolveJsonModule": true,
   },
   "include": [
+    "app.ts",
+    "router.ts",
     "src/**/*.ts"
   ],
   "exclude": [
