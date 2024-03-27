@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "start": "nodemon"
+    "start": "nodemon",
+    "profile": "node --inspect=0.0.0.0:9229 -r ts-node/register app.ts"
   },
   "repository": {
     "type": "git",
